@@ -7,8 +7,8 @@ Namely:
  - language/textual complexity
   there is a good introductory article here: https://medium.com/analytics-vidhya/visualising-text-complexity-with-readability-formulas-c86474efc730
  - sentiment analysis
- - summary of texts
- - topic modeling
+ - [TODO] summary of texts
+ - [TODO] topic modeling
 
 ## Libraries
  I'm using:
