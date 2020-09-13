@@ -1,4 +1,4 @@
-# german news text mining and analysis
+# German news text mining and analysis
 
 Some work in progress playground for text mining and analysis techniques
 applied to the German language.
