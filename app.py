@@ -2,6 +2,8 @@
 from src import collector
 from src import sentiment
 from src import complexity
+from src import wikiSearch as wiki
+from src import alternativeSources as altSources
 
 
 # "https://www.sueddeutsche.de/politik/klimakrise-klimawandel-freiheit-werkstatt-demokratie-interview-1.4625111",
@@ -11,7 +13,8 @@ from src import complexity
 
 urls = [
     "https://www.sueddeutsche.de/wirtschaft/bahn-milliarden-ausbau-1.5029830",
-    "https://www.bild.de/regional/saarland/saarland-news/corona-verstoesse-in-saarlouis-polizei-macht-shisha-bar-dicht-72886644.bild.html"
+    "https://www.bild.de/regional/saarland/saarland-news/corona-verstoesse-in-saarlouis-polizei-macht-shisha-bar-dicht-72886644.bild.html",
+    "https://www.sueddeutsche.de/leben/aktuell-klokultur-1.5035940"
 ]
 
 # 'authors', 'date_download', 'date_modify', 'date_publish', 'description', 'filename', 'get_dict', 'get_serializable_dict', 'image_url', 'language', 'lo
@@ -23,13 +26,12 @@ tc = complexity.TextComplexity()
 newsArticles = col.collect(urls)
 for item in newsArticles:
     sentimentForItem = sent.getArticleSentiment(item.maintext)
+    # info = wiki.get(item.title)
     print(f"# {item.title} #")
-    # print(item.maintext)
-    print("--------")
+    # print(f"{info=}")
+    alts = altSources.googleSearch(item.title)
+    print(f"{alts=}")
     print(sentimentForItem)
     readabilityFleshReading = tc.fleschReadingEase(item.maintext)
-    readabilityFleshKincaid = tc.fleschKincaidGradeLevel(item.maintext)
-    readabilityARI = tc.automatedReadabiltyIndex(item.maintext)
     print(f"{readabilityFleshReading=}")
-    print(f"{readabilityFleshKincaid=}")
-    print(f"{readabilityARI=}")
+    print("--------")

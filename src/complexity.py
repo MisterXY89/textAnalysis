@@ -19,7 +19,7 @@ class TextComplexity:
         for sentence in sentences:
             doc = self.nlp(sentence)
             for token in doc:
-                if str(token.text).isalpha() and not token.is_stop:
+                if str(token.text).isalpha():
                     tokens.append(token.text)
         return tokens
 
@@ -29,7 +29,9 @@ class TextComplexity:
     def _getTotalSyllables(self, words):
         totalSyllables = 0
         for word in words:
-            totalSyllables += len(self.phenDic.inserted(word).split("-"))
+            sylString = self.phenDic.inserted(word)
+            sylCount = len(sylString.split("-"))
+            totalSyllables += sylCount
         return totalSyllables
 
     def fleschReadingEase(self, text):
@@ -38,20 +40,22 @@ class TextComplexity:
         words = self._getWords(sentences)
         totalWords = len(words)
         totalSyllables = self._getTotalSyllables(words)
-        return 206.835 - 1.015 * (totalWords/totalSentences) - 84.6 * (totalSyllables/totalWords)
+        SL = totalWords/totalSentences
+        WL = totalSyllables/totalWords
+        return 180 - SL - (WL * 58.5)
 
     def fleschKincaidGradeLevel(self, text):
+        print("> Warning: this implementation does not return useful info for german texts.")
         sentences = self._getSentences(text)
         totalSentences = len(sentences)
         words = self._getWords(sentences)
         totalWords = len(words)
         totalSyllables = self._getTotalSyllables(words)
         return 0.39 * (totalWords/totalSentences) + 11.8 * (totalSyllables/totalWords) - 15.59
-        # return (0.39 * len(text.split()) / len(text.split('.')) ) + 11.8 * ( sum(list(map(lambda x: 1 if x in ["a","i","e","o","u","y","A","E","I","O","U","y"] else 0,text))) / len(text.split())) - 15.59
 
     def automatedReadabiltyIndex(self, text):
+        print("> Warning: this implementation does not return useful info for german texts.")
         sentences = self._getSentences(text)
-        print(sentences)
         totalSentences = len(sentences)
         words = self._getWords(sentences)
         totalWords = len(words)
