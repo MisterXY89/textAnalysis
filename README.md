@@ -4,15 +4,17 @@ Some work in progress playground for text mining and analysis techniques
 applied to the German language.
 
 Namely:
- - language/textual complexity
+ - language/textual complexity, see Toni Amstad's dissertations (thx to u/toikpi/)
+
   there is a good introductory article here: https://medium.com/analytics-vidhya/visualising-text-complexity-with-readability-formulas-c86474efc730
- - sentiment analysis
+ - sentiment analysis, see Oliver Guhr
  - [TODO] summary of texts
  - [TODO] topic modeling
+ - [TODO] opinion mining
 
 ## Libraries
  I'm using:
- - spacy for common NLP tasks
+ - spacy & nltk for common NLP tasks
  - NewsPlease for fetching news articles by their url
  - pyphen for syllables interaction
  - germansentiment for the sentiment analysis
@@ -29,3 +31,5 @@ I'm using this mainly for me, so I have a place to save potential useful stuff :
 `Guhr, Oliver, et al. "Training a Broad-Coverage German Sentiment Classification Model for Dialog Systems." Proceedings of The 12th Language Resources and Evaluation Conference. 2020.`
 
 `Hamborg, Felix, et al. "News-please: a generic news crawler and extractor." 15th International Symposium of Information Science (ISI 2017). 2017.`
+
+`Amstad, Toni. Wie verständlich sind unsere Zeitungen?. Studenten-Schreib-Service, 1978.`
