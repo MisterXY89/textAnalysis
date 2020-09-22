@@ -12,6 +12,7 @@ class Sentiment:
         self.model = SentimentModel()
 
     def getArticleSentiment(self, article):
+        # use get sentences method
         sentences = article.split(".")
         sentences = prepareText(sentences)
         result = self.model.predict_sentiment(sentences)
