@@ -1,0 +1,63 @@
+html {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.default {
+  background-color: #222;
+}
+
+.text-center {
+  text-align: center;
+  margin: auto;
+}
+
+
+footer {
+  width: 100%;
+  height: 8em;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  text-align: center;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  /* background-color: rgba(140,140,140,0.7); */
+  background-color: transparent;
+  color: #000;
+}
+
+.content {
+  padding-bottom: 8em !important;
+}
+
+.indexJumbo,
+.indexContent
+{
+  color: #fff;
+  text-align: center;
+  z-index: 99 !important;
+  font-size: 1.2em;
+}
+
+.card {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  float: left;
+  margin:auto;
+  margin-right: 3%;
+}
+
+.loadingGif {
+  height: 400px !important;
+  text-align: center;
+  margin:auto;
+}

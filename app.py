@@ -1,37 +1,61 @@
 
-from src import collector
-from src import sentiment
-from src import complexity
-from src import wikiSearch as wiki
-from src import alternativeSources as altSources
+# from gevent import monkey
+# monkey.patch_all()
+
+import os
+import sys
+import json
+import time
+
+from config import Config
+
+from functools import wraps
+from flask import Flask, request, redirect, url_for, render_template, session, jsonify
+
+config = Config()
+
+col = config.col
+sent = config.sent
+tc = config.tc
+
+app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+app.secret_key = config.FLASK_SECRET
 
 
-# "https://www.sueddeutsche.de/politik/klimakrise-klimawandel-freiheit-werkstatt-demokratie-interview-1.4625111",
-# "https://www.bild.de/regional/hannover/hannover-aktuell/guth-verliert-stichwahl-kestner-ist-neuer-afd-chef-in-niedersachsen-72888092.bild.html",
-# "https://www.bild.de/news/ausland/news-ausland/usa-angreifer-schiesst-cops-in-streifenwagen-nieder-trump-fordert-todesstrafe-72887984.bild.html"
-# "https://www.bild.de/news/inland/news-inland/coronavirus-aktuell-deutschland-astrazenca-setzt-impfstoffstudie-wieder-fort-70411946.bild.html",
+@app.route("/analyse", methods=["POST"])
+def analyse():
+    data = requests.form
+    if "newsURL" in data:
+        pass
+    else:
+        redirect(url_for("error", msg= "Fehlender Parameter <newsURL>"))
 
-urls = [
-    "https://www.sueddeutsche.de/wirtschaft/bahn-milliarden-ausbau-1.5029830",
-    "https://www.bild.de/regional/saarland/saarland-news/corona-verstoesse-in-saarlouis-polizei-macht-shisha-bar-dicht-72886644.bild.html",
-    "https://www.sueddeutsche.de/leben/aktuell-klokultur-1.5035940"
-]
+@app.route("/error")
+def error():
+    data = requests.args
+    msg = "Bitte versuche es erneut oder eröffne einen Issue auf <a href='#TODO_GH' target='blank_'>GitHub</a>."
+    if "msg" in data:
+        msg += "<br><code>" + data["msg"] + "</code>"
+    render_template("error.html", msg=msg)
 
-# 'authors', 'date_download', 'date_modify', 'date_publish', 'description', 'filename', 'get_dict', 'get_serializable_dict', 'image_url', 'language', 'lo
-# calpath', 'maintext', 'source_domain', 'text', 'title', 'title_page', 'title_rss', 'url']
-col = collector.Collector()
-sent = sentiment.Sentiment()
-tc = complexity.TextComplexity()
+@app.route("/")
+def index():
+    return render_template("index.html")
 
-newsArticles = col.collect(urls)
-for item in newsArticles:
-    sentimentForItem = sent.getArticleSentiment(item.maintext)
-    # info = wiki.get(item.title)
-    print(f"# {item.title} #")
-    # print(f"{info=}")
-    alts = altSources.googleSearch(item.title)
-    print(f"{alts=}")
-    print(sentimentForItem)
-    readabilityFleshReading = tc.fleschReadingEase(item.maintext)
-    print(f"{readabilityFleshReading=}")
-    print("--------")
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
+
+# newsArticles = col.collect(urls)
+# for item in newsArticles:
+#     sentimentForItem = sent.getArticleSentiment(item.maintext)
+#     # info = wiki.get(item.title)
+#     print(f"# {item.title} #")
+#     # print(f"{info=}")
+#     alts = altSources.googleSearch(item.title)
+#     print(f"{alts=}")
+#     print(sentimentForItem)
+#     readabilityFleshReading = tc.fleschReadingEase(item.maintext)
+#     print(f"{readabilityFleshReading=}")
+#     print("--------")
