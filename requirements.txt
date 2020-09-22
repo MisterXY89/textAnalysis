@@ -23,6 +23,7 @@ elasticsearch==7.9.1
 feedfinder2==0.0.4
 feedparser==6.0.1
 filelock==3.0.12
+Flask==1.1.2
 future==0.18.2
 germansentiment==1.0.3
 google==3.0.0
@@ -33,11 +34,14 @@ idna==2.10
 incremental==17.5.0
 itemadapter==0.1.0
 itemloaders==1.0.3
+itsdangerous==1.1.0
 jieba3k==0.35.1
+Jinja2==2.11.2
 jmespath==0.10.0
 joblib==0.16.0
 langdetect==1.0.8
 lxml==4.5.2
+MarkupSafe==1.1.1
 murmurhash==1.0.2
 news-please==1.5.3
 newspaper3k==0.2.8
@@ -78,6 +82,8 @@ six==1.15.0
 soupsieve==2.0.1
 spacy==2.3.2
 srsly==1.0.2
+textblob==0.15.3
+textblob-de==0.4.3
 thinc==7.4.1
 tinysegmenter==0.3
 tldextract==2.2.3
@@ -90,5 +96,6 @@ urllib3==1.25.10
 w3lib==1.22.0
 warcio==1.7.4
 wasabi==0.8.0
+Werkzeug==1.0.1
 wikipedia==1.4.0
 zope.interface==5.1.0
