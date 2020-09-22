@@ -7,6 +7,10 @@ class TextComplexity:
     """
     determine the linguistic complexity of a text
     using multiple methods
+    for a more detailed & complex implementation with
+    multiple language support see https://pypi.org/project/readability/
+    for practise purposes I implemented the methods on my own and
+    will not use this package
     """
 
     def __init__(self):
