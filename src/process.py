@@ -1,37 +1,32 @@
 
 import spacy
-# textblob-de
+ from textblob_de import TextBlobDE as TextBlob
 
-class Processor(object):
+class Processor:
     """
     docstring for Preprocessor.
     """
 
-    def __init__(self):
+    def __init__(self, text):
+        self.text = text
         self.nlp = spacy.load("de_core_news_md")
-
-    def tokenize(self, text, lemmatize=True):
-        text = self._prepareReplacements(text)
-        doc = self.nlp(text)
-        for token in doc:
-            if str(token.text).isalpha():
-                tokens.append(token.lemma_)
-
-    def lemmatize(self, word):
-        return self.nlp(word)[0].lemma_
+        self.blob = TextBlob(text)
+        self.sentences = self.blob.sentences
+        self.words = self.blob.words
+        self.tokens = self.blob.tokens
+        print(f"{self.words=}")
+        print(f"{self.tokens=}")
+        self.lemmas = blob.tokens.lemmatize()
+        self.alphaTokens = self.makeAlpha(self.tokens)
 
 
-    def _prepareReplacements(self, text):
-        text.replace("z.B.", "zum Beispiel")
-        return text
+    def makeAlpha(self, text):
+        alphaTokens = []
+        for token in tokens:
+            if str(token).isalpha():
+                alphaTokens.append(token)
+        return alphaTokens
 
-    def processPipe(self, sentences):
-        for doc in nlp.pipe(texts, disable=["tagger", "parser"]):
-            # Do something with the doc here
-            print([(ent.text, ent.label_) for ent in doc.ents])
-
-    def _getSentences(self):
-        pass
 
 class NewsArticle:
     """
