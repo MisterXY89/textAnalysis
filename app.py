@@ -14,9 +14,10 @@ from flask import Flask, request, redirect, url_for, render_template, session, j
 
 config = Config()
 
-col = config.col
-sent = config.sent
-tc = config.tc
+collector = config.collector
+processor = config.processor
+sentiment = config.sentiment
+complexity = config.complexity
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0

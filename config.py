@@ -3,6 +3,7 @@ import os
 import time
 
 from src import collector
+from src import processor
 from src import sentiment
 from src import complexity
 from src import wikiSearch as wiki
@@ -19,9 +20,10 @@ class Config:
             "https://www.sueddeutsche.de/leben/aktuell-klokultur-1.5035940",
             "https://www.sueddeutsche.de/sport/schalke-04-wagner-1.5039548"
         ]
-        self.col = collector.Collector()
-        self.sent = sentiment.Sentiment()
-        self.tc = complexity.TextComplexity()
+        self.collector = collector.Collector()
+        self.sentiment = sentiment.Sentiment()
+        self.complexity = complexity.TextComplexity()
+        self.processor = processor.Processor()
 
         # set timezone:
         os.environ['TZ'] = self.TIMEZONE
