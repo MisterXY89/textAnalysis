@@ -9,9 +9,9 @@ import time
 
 from config import Config
 
-import redis
-from flask_kvsession import KVSessionExtension
-from simplekv.memory.redisstore import RedisStore
+# import redis
+# from flask_kvsession import KVSessionExtension
+# from simplekv.memory.redisstore import RedisStore
 
 from functools import wraps
 from flask import Flask, request, redirect, url_for, render_template, session, jsonify
@@ -29,8 +29,8 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.secret_key = config.FLASK_SECRET
 
 
-store = RedisStore(redis.StrictRedis())
-KVSessionExtension(store, app)
+# store = RedisStore(redis.StrictRedis())
+# KVSessionExtension(store, app)
 
 @app.route("/analyse", methods=["POST"])
 def analyse():
@@ -50,7 +50,6 @@ def analyse():
         altSourcesForArticle = googleSearch(articleData.title)
 
     wordcloud = article.wordcloudImage
-    print(wordcloud)
 
     renderArticle = {
         "meta" : {
@@ -68,9 +67,8 @@ def analyse():
         "sentimentDict" : articleSentimentDict,
         "totalWords" : len(article.words),
         "totalSentences" : len(article.sentences),
-        "alternativeSources" : altSourcesForArticle,
-        "wordcloudImageUrl" : article.wordcloudImageUrl,
-        "wordcloudImageBase64": article.wordcloudImageBase64
+        "alternativeSources" : altSourcesForArticle
+        # "wordcloudImageUrl" : article.wordcloudImageUrl
     }
 
     session["renderArticle"] = renderArticle
