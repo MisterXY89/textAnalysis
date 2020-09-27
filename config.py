@@ -20,10 +20,12 @@ class Config:
             "https://www.sueddeutsche.de/leben/aktuell-klokultur-1.5035940",
             "https://www.sueddeutsche.de/sport/schalke-04-wagner-1.5039548"
         ]
+
         self.collector = collector.Collector()
-        self.sentiment = sentiment.Sentiment()
-        self.complexity = complexity.TextComplexity()
         self.processor = processor.Processor()
+        self.sentiment = sentiment.Sentiment(self.processor)
+        self.complexity = complexity.TextComplexity(self.processor)
+        self.altSources = altSources
 
         # set timezone:
         os.environ['TZ'] = self.TIMEZONE
