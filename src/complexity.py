@@ -1,7 +1,7 @@
 
-import spacy
 import pyphen
 from .helper import prepareText
+from .processor import Processor
 
 class TextComplexity:
     """
@@ -13,22 +13,9 @@ class TextComplexity:
     will not use this package
     """
 
-    def __init__(self):
-        self.nlp = spacy.load("de_core_news_md")
+    def __init__(self, processor):
         self.phenDic = pyphen.Pyphen(lang='de_DE')
-
-    def _getWords(self, sentences):
-        # words = tokens
-        tokens = []
-        for sentence in sentences:
-            doc = self.nlp(sentence)
-            for token in doc:
-                if str(token.text).isalpha():
-                    tokens.append(token.text)
-        return tokens
-
-    def _getSentences(self, text):
-        return prepareText(text.split("."), forSentiment=False)
+        self.processor = processor
 
     def _getTotalSyllables(self, words):
         totalSyllables = 0
@@ -39,11 +26,12 @@ class TextComplexity:
         return totalSyllables
 
     def fleschReadingEase(self, text):
-        sentences = self._getSentences(text)
-        totalSentences = len(sentences)
-        words = self._getWords(sentences)
-        totalWords = len(words)
-        totalSyllables = self._getTotalSyllables(words)
+        article = self.processor.process(text)
+        # print(self.processor.result.sentences)
+        # print(self.processor.result.szFreeSentences)
+        totalSentences = len(article.sentences)
+        totalWords = len(article.words)
+        totalSyllables = self._getTotalSyllables(article.words)
         SL = totalWords/totalSentences
         WL = totalSyllables/totalWords
         return 180 - SL - (WL * 58.5)
