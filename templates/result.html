@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+{% block header %}
+<div class="jumbo">
+  <h1>Zeitungsmining</h1>
+  <p>
+    Dieser Service wendet verschiede Text Mining- und Analysemethoden auf Zeitungsartikel an<br />
+    Füge einfach eine URL von einem Artikel deiner Wahl in das Eingabefeld ein und klicke auf Analyse.
+  </p>
+</div>
+{% endblock %}
+{% block content %}
+<!-- NAVIGATIONS -->
+<div class="analyseResultContent">
+
+  <div class="row">
+    <h2>Artikel: <a href="{{ article['meta']['url'] }}" target="_blank" title="Öffnet Original Artikel">{{ article["title"] }}</a></h2>
+    <small>Von {{ article["meta"]["author"] }}, {{ article["meta"]["date_publish"] }}</small><br />
+    <small>Heruntergeladen am {{ article["meta"]["date_download"] }}</small>
+    <p>
+        {{ article["maintext"]}}
+    </p>
+  </div>
+
+  <div class="row">
+    <h2>Lesbarkeit</h2>
+    <p>
+        Die <i>{{ article["comeplexityType"] }}</i> Lesbarkeit ist <code>{{ article["complexity"] }}</code>.
+    </p>
+  </div>
+
+  <div class="row">
+    <h2>Alternative Quellen </h2>
+    <p>
+        Ein paar alternative Quellen für diese Nachricht sind:
+        <ul>
+            {% for source in article["alternativeSources"] %}
+
+              <li>
+                  <a href="{{ source }}" target="_blank">{{ source }}</a>
+              </li>
+
+            {% endfor %}
+        </ul>
+    </p>
+  </div>
+
+  <div class="row">
+    <h2>Sentiment</h2>
+    <p>
+        Der Artikel ist insgesamt <code>{{ article["sentiment"] }}</code>, mit den folgenden Sentimenergebnissen <code>{{ article["sentimentDict"] }}</code>.
+    </p>
+  </div>
+
+  <div class="row">
+    <h2>Wortwolke</h2>
+    <p>
+        Die folgende Wortwolke wurde generiert (Stopwörter wurden entfernt).
+    </p>
+    <!-- <img src="https://file.io/hb5MgVKRMZBF" alt="Wortwolke für {{ article['title'] }}" align="center"> -->
+    <img src="data:;base64,{{ wordcloudImageBase64 }}" alt="Wortwolke für {{ article['title'] }}" align="center">
+  </div>
+
+
+  <!-- some basic infos on the site,  -->
+  <!-- below clooapsable side nav to detailed report of each analysis point -->
+
+  <!-- <h2>
+    Du möchtest noch einen Artikle analysieren?
+  </h2>
+  {% include "includes/analyseInput.html" %}   -->
+</div>
+{% include "includes/analyseSiteNav.html" %}
+{% endblock %}
