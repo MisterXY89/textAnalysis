@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block header %}
-<div class="jumbo indexJumbo">
+<div class="jumbo">
   <h1>Leider ist ein Fehler aufgetreten</h1>
 </div>
 {% endblock %}
@@ -8,7 +8,7 @@
 <!-- NAVIGATIONS -->
 <div class="container">
   {% if msg is defined %}
-    {{ msg }}
+    {{ msg | safe }}
   {% endif %}
 </div>
 {% endblock %}
