@@ -2,6 +2,7 @@ html {
   height: 100%;
   width: 100%;
   position: relative;
+  background: #fff !important;
 }
 
 body {
@@ -60,4 +61,49 @@ footer {
   height: 400px !important;
   text-align: center;
   margin:auto;
+}
+
+.analyseSideNav dd {
+  font-style: italic;
+}
+
+.analyseSideNav {
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 8em;
+  right: 2em;
+  background: #eee !important;
+  overflow-x: hidden;
+  padding: 1em 0;
+}
+
+.analyseSideNav dt {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 1.2em;
+  color: #2196F3;
+  display: block;
+}
+
+.analyseSideNav a:hover {
+  color: #064579;
+}
+
+.analyseResultContent {
+  /* margin-right: 140px; */
+  padding: 0px 10px;
+}
+
+#navShowBtn {
+  position: fixed;
+  top: 5em;
+  right: 2em;
+  max-width: 110px !important;
+  /* height: 70px !important; */
+}
+
+@media screen and (max-height: 450px) {
+  .analyseSideNav {padding-top: 15px;}
+  .analyseSideNav a {font-size: 18px;}
 }
