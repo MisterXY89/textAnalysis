@@ -72,12 +72,11 @@ class Processor:
         self.result.wordcloud.to_image().save(self.result.wordcloudImage, 'PNG')
         self.result.wordcloudImage.seek(0)
 
-        # .decode("utf-8")
         self.result.wordcloudImageBase64 = b64encode(self.result.wordcloudImage.read())
-        response = requests.post("https://file.io", files={"file": self.result.wordcloudImage})
+        # response = requests.post("https://file.io", files={"file": self.result.wordcloudImage})
         self.result.wordcloudImageUrl = ""
-        if response.status_code == 200:
-            self.result.wordcloudImageUrl = json.loads(response.text)["link"]
+        # if response.status_code == 200:
+        #     self.result.wordcloudImageUrl = json.loads(response.text)["link"]
 
 
 
