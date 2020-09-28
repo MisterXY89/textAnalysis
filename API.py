@@ -1,5 +1,6 @@
 
 import validators
+import ApiConfig as cf
 
 class API:
 	"""
@@ -7,23 +8,16 @@ class API:
 	the web app's functionalities
 	"""
 
-	def __init__(self, collector=False, processor=False, sentiment=False, complexity=False, altSources=False):
-		if not collector:
-			self._init_external_API()
-		else:
-			self._init_Flask_API(collector, processor, sentiment, complexity, altSources)
+	def __init__(self, config = None):
+		"""
+		constructor:
 
-	def _init_Flask_API(self, collector, processor, sentiment, complexity, altSources):
-		self.collector = collector
-		self.processor = processor
-		self.sentiment = sentiment
-		self.complexity = complexity
-		self.altSources = altSources
+		optionally load apiConfig for external (non-flask) API use
+		via the config param
+		""""
+		if config == None:
+			config = cf.ApiConfig()
 
-	def _init_external_API(self):
-		import config as cf
-		# from config import Config
-		config = cf.Config(importAPI=False)
 		self.collector = config.collector
 		self.processor = config.processor
 		self.sentiment = config.sentiment
@@ -31,16 +25,30 @@ class API:
 		self.googleSearch = config.altSources.googleSearch
 
 	def _areValidUrls(self, urls):
+		"""
+		verify if list of urls are valid
+		via the validators package
+		"""
 		for url in urls:
-			print(validators.url(url))
 			if not validators.url(url):
 				return False
 		return True
 
-	def newsAnalysis(self, urls):
-		if not self._areValidUrls(urls):
-			return "Please provide a valid URL (list)"
+	def newsAnalysis(self, urls, valid=False):
+		"""
+		! currently only the first url is analyzed
 
+		perform a complete analysis -
+		bringing together all implemented techniques
+
+		if you are sure that your url is valid set valid = True
+		-> this option is used for Flask app (url gets checked via JS)
+		"""
+		if not valid: # if urls have already been validated
+			if not self._areValidUrls(urls):
+				return "Please provide a valid URL (list)"
+
+		# collect data
 		articleData = self.collector.collect(urls)[0]
 		maintext = articleData.maintext
 		article = self.processor.process(maintext, articleData.title)
@@ -52,6 +60,7 @@ class API:
 			print(f"Error for: {article.titleNounPhrases=}")
 			altSourcesForArticle = self.googleSearch(articleData.title)
 
+		# prepare return dictionary
 		renderArticle = {
 			"meta" : {
 				"date_publish" : articleData.date_publish,
