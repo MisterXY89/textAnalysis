@@ -2,6 +2,7 @@
 import json
 import spacy
 import requests
+import de_core_news_md
 from io import BytesIO
 from base64 import b64encode
 from wordcloud import WordCloud
@@ -16,13 +17,13 @@ class Processor:
     """
 
     def __init__(self):
-        self.nlp = spacy.load("de_core_news_md")
+		self.nlp = de_core_news_md.load()
+        # self.nlp = spacy.load("de_core_news_md")
         self.result = NewsArticle()
 
     def process(self, maintext, title=""):
         self.text = maintext
         self.title = title
-        self.nlp = spacy.load("de_core_news_md")
         self._lemmatizer = PatternParserLemmatizer()
         self.NPExtractor = PatternParserNPExtractor()
         self.blob = TextBlob(self.text, pos_tagger=PatternTagger(include_punc=True))

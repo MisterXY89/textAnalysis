@@ -4,6 +4,7 @@ freeze:
 
 deploy:
 	@echo "Starting deployment:"
+	git push heroku master
 
 clean:
 	@echo "Cleaning project via"

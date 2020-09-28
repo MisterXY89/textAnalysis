@@ -92,6 +92,7 @@ simplekv==0.14.1
 six==1.15.0
 soupsieve==2.0.1
 spacy==2.3.2
+https://github.com/explosion/spacy-models/archive/de_core_news_md-3.0.0a0.zip
 srsly==1.0.2
 textblob==0.15.3
 textblob-de==0.4.3
