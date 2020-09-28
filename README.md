@@ -4,10 +4,11 @@ Some work in progress playground for text mining and analysis techniques
 applied to the German language.
 
 Namely:
- - language/textual complexity, see Toni Amstad's dissertations (thx to u/toikpi/)
-
+ - language/textual complexity, see Toni Amstad's dissertations (thx to u/toikpi)<br>
   there is a good introductory article here: https://medium.com/analytics-vidhya/visualising-text-complexity-with-readability-formulas-c86474efc730
  - sentiment analysis, see Oliver Guhr
+ - WordCloud generation
+ - potential aternative sources collection
  - [TODO] summary of texts
  - [TODO] topic modeling
  - [TODO] opinion mining
@@ -60,7 +61,7 @@ The resulting dict has the form (for [this](https://www.n-tv.de/politik/politik_
       "https://www.spiegel.de/politik/ausland/usa-wie-donald-trump-die-gewalt-auf-den-strassen-nutzt-podcast-acht-milliarden-a-5b46af45-c4a5-40cc-abf9-f28ce49c1f55",
       "https://www.handelsblatt.com/politik/international/proteste-in-den-usa-trump-bezeichnet-ausschreitungen-in-kenosha-als-inlaendischen-terrorismus/26149492.html"
    ],
-   "wordcloudImageBase64":"b""...oOwrBPb8N4OQmSxWhyRy84kMAw3tAGEiPUvb5QmIwwvftrifDexiU1sYhOb2MQmNrGJTWxiE5sogf8DE2NcVihW9rIAAAAASUVORK5CYII="
+   "wordcloudImageBase64":b"...oOwrBPb8N4OQmSxWhyRy84kMAw3tAGEiPUvb5QmIwwvftrifDexiU1sYhOb2MQmNrGJTWxiE5sogf8DE2NcVihW9rIAAAAASUVORK5CYII="
 }
 ```
 
