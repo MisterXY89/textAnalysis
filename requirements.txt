@@ -28,7 +28,6 @@ filelock==3.0.12
 Flask==1.1.2
 Flask-KVSession==0.6.2
 future==0.18.2
-german-lemmatizer==0.1.1
 germansentiment==1.0.3
 gevent==20.9.0
 google==3.0.0
@@ -53,7 +52,6 @@ matplotlib==3.3.2
 murmurhash==1.0.2
 news-please==1.5.3
 newspaper3k==0.2.8
-nltk==3.5
 numpy==1.19.2
 packaging==20.4
 parsel==1.6.0
@@ -90,7 +88,7 @@ sgmllib3k==1.0.0
 simplekv==0.14.1
 six==1.15.0
 soupsieve==2.0.1
-spacy==2.3.2
+spacy==2.0.0
 https://github.com/explosion/spacy-models/releases/download/de_core_news_md-1.0.0/de_core_news_md-1.0.0.tar.gz
 srsly==1.0.2
 textblob==0.15.3
