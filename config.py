@@ -1,6 +1,7 @@
 
 import os
 import time
+from dotenv import load_dotenv
 
 from src import collector
 from src import processor
@@ -9,9 +10,11 @@ from src import complexity
 from src import wikiSearch as wiki
 from src import alternativeSources as altSources
 
+load_dotenv(verbose=True)
+
 class Config:
     def __init__(self):
-        self.FLASK_SECRET = "$1$LOMT9Hq5$N.nvua5/7kzMMbKoIhwv21"
+        self.FLASK_SECRET = os.getenv("FLASK_SECRET")
         self.TIMEZONE = 'Europe/Berlin'
         # some test urls
         self.urls = [
