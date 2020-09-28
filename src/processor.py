@@ -20,7 +20,6 @@ class Processor:
         self.result = NewsArticle()
 
     def process(self, maintext, title=""):
-        print("> Processing started")
         self.text = maintext
         self.title = title
         self.nlp = spacy.load("de_core_news_md")
