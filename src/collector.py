@@ -14,7 +14,7 @@ class Collector:
         # 'authors', 'date_download', 'date_modify', 'date_publish', 'description', 'filename', 'get_dict', 'get_serializable_dict', 'image_url', 'language', 'lo
         # calpath', 'maintext', 'source_domain', 'text', 'title', 'title_page', 'title_rss', 'url']
         articles = NewsPlease.from_urls(urls)
-        articlesOutput = []
+        articles_output = []
         for article in articles.items():
-            articlesOutput.append(article[1])
-        return articlesOutput
+            articles_output.append(article[1])
+        return articles_output
