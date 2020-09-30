@@ -14,7 +14,7 @@ class API:
 
 		optionally load apiConfig for external (non-flask) API use
 		via the config param
-		""""
+		"""
 		if config == None:
 			config = cf.ApiConfig()
 
