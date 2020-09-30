@@ -22,7 +22,8 @@ I've outsourced the analysis part to the `API.py` file, thus providing an interf
 from API import API
 api = API()
 # urls is of type list, but currently only the first url will be analyzed
-results = api.newsAnalysis(urls)
+urls = ["https://www.sueddeutsche.de/wirtschaft/bahn-milliarden-ausbau-1.5029830"]
+results = api.news_analysis(urls)
 ```
 The resulting dict has the form (for [this](https://www.n-tv.de/politik/politik_kommentare/Trump-ist-kein-Putschist-sondern-Opportunist-article22057804.html) article):
 ```json
