@@ -25,9 +25,8 @@ def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, 
 
 
 def prepareText(sentences, forSentiment=True):
-    prepedSentences = []
-    # print("Preparing sentences for sentiment analysis:")
-    # printProgressBar(0, len(sentences), prefix = 'Progress:', suffix = 'Complete', length = 50)
+    preped_sentences = []
+    preped_sentences_append = preped_sentences.append
     for i, sentence in enumerate(sentences):
         sentence = sentence.replace("\n", " ")
         if sentence.startswith(" "):
@@ -35,6 +34,6 @@ def prepareText(sentences, forSentiment=True):
         if forSentiment:
             sentence = sentence.replace("ß", "ss")
         if sentence != "" or sentence != " " or sentence != "\n" and sentence != None:
-            prepedSentences.append(sentence)
+            preped_sentences_append(sentence)
         # printProgressBar(i + 1, len(sentences), prefix = 'Progress:', suffix = 'Complete', length = 50)
-    return prepedSentences
+    return preped_sentences

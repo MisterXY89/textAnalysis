@@ -15,6 +15,7 @@ class Collector:
         # calpath', 'maintext', 'source_domain', 'text', 'title', 'title_page', 'title_rss', 'url']
         articles = NewsPlease.from_urls(urls)
         articles_output = []
+        articles_output_append = articles_output.append
         for article in articles.items():
-            articles_output.append(article[1])
+            articles_output_append(article[1])
         return articles_output
