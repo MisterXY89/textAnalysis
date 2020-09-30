@@ -1,6 +1,7 @@
 freeze:
 	@echo "Updating requirements:"
-	pip freeze | grep -v "pkg-resources" > requirements.txt
+	pip freeze | grep -v "pkg-resources\|de-core-news-sm"  > requirements.txt
+	echo "https://github.com/explosion/spacy-models/releases/download/de_core_news_sm-2.3.0/de_core_news_sm-2.3.0.tar.gz" >> requirements.txt
 
 deploy:
 	@echo "Starting deployment:"
@@ -8,6 +9,7 @@ deploy:
 
 clean:
 	@echo "Cleaning project via"
+	rm -r __pycache__/
 	py3clean .
 
 test:
