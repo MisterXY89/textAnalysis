@@ -1,27 +1,10 @@
 
-from config import Config
+import pytest
 
-from textblob_de.lemmatizers import PatternParserLemmatizer
+from API import API
 
-config = Config()
+api = API()
 
-collector = config.collector
-processor = config.processor
-sentiment = config.sentiment
-complexity = config.complexity
-googleSearch = config.altSources.googleSearch
-
-data = collector.collect(config.urls)
-test_data = data[0]
-
-
-article = processor.process(test_data.maintext, test_data.title)
-# print(f"{processor.result.alphaTokens=}")
-# print(f"{processor.result.parsed=}")
-altSourcesForArticle = googleSearch(" ".join(article.titleNounPhrases))
-print(f"{altSourcesForArticle=}")
-
-
-
-# _lemmatizer = PatternParserLemmatizer()
-# _lemmatizer.lemmatize(" ".join(processor.result.alphaTokens))
+def test_total_analysis():
+    urls = ["https://www.sueddeutsche.de/wirtschaft/bahn-milliarden-ausbau-1.5029830"]
+    assert isinstance(api.news_analysis(urls), dict)
