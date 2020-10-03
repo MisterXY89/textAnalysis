@@ -18,6 +18,11 @@ class TextComplexity:
         self.processor = processor
 
     def _getTotalSyllables(self, words):
+		"""
+		get the syllables count for a list of words
+		with the pyphen package
+		for more see the offical pyphen docs
+		"""
         totalSyllables = 0
         for word in words:
             sylString = self.phenDic.inserted(word)
@@ -26,9 +31,12 @@ class TextComplexity:
         return totalSyllables
 
     def fleschReadingEase(self, text):
+		"""
+		calculate the Flesch-Reading-Ease Score for a german text
+		takes care of all calculations needed
+		TODO: for performance sake add the processor object as param
+		"""
         article = self.processor.process(text)
-        # print(self.processor.result.sentences)
-        # print(self.processor.result.szFreeSentences)
         totalSentences = len(article.sentences)
         totalWords = len(article.words)
         totalSyllables = self._getTotalSyllables(article.words)
@@ -37,6 +45,11 @@ class TextComplexity:
         return 180 - SL - (WL * 58.5)
 
     def fleschKincaidGradeLevel(self, text):
+		"""
+		calculate the Flesch-Kincaid-Grade Level for an ENGLISH TEXT
+		takes care of all calculations needed
+		WARNING: currently only english texts
+		"""
         print("> Warning: this implementation does not return useful info for german texts.")
         sentences = self._getSentences(text)
         totalSentences = len(sentences)
@@ -46,6 +59,11 @@ class TextComplexity:
         return 0.39 * (totalWords/totalSentences) + 11.8 * (totalSyllables/totalWords) - 15.59
 
     def automatedReadabiltyIndex(self, text):
+		"""
+		calculate the automated Readabilty-Index for an ENGLISH TEXT
+		takes care of all calculations needed
+		WARNING: currently only english texts
+		"""
         print("> Warning: this implementation does not return useful info for german texts.")
         sentences = self._getSentences(text)
         totalSentences = len(sentences)
