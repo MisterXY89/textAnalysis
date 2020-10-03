@@ -5,16 +5,20 @@ from germansentiment import SentimentModel
 
 class Sentiment:
     """
-    docstring
+    Wrapper/Factory for the germansentiment package
     """
 
     def __init__(self, processor):
+		"""
+		init sentiment model
+		"""
         self.model = SentimentModel()
-        self.processor = processor
 
     def getArticleSentiment(self, sentences):
-        # use get sentences method
-        # sentences = article.split(".")
+        """
+		returns the dominant sentiment and sentiment distribution
+		takes sentences as list as an argument
+		"""
         sentences = prepareText(sentences)
         result = self.model.predict_sentiment(sentences)
         articleSentimenDict = dict(Counter(result))
