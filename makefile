@@ -4,12 +4,11 @@ freeze:
 	echo "https://github.com/explosion/spacy-models/releases/download/de_core_news_sm-2.3.0/de_core_news_sm-2.3.0.tar.gz" >> requirements.txt
 
 deploy:
-	@echo "Starting deployment:"
-	git push heroku master
+	@echo "Starting deployment - via docker container push:"
+	heroku container:push web –app zeitung-plus
 
 clean:
-	@echo "Cleaning project via"
-	rm -r __pycache__/
+	@echo "Cleaning project via:"
 	py3clean .
 
 test:
@@ -23,3 +22,11 @@ lint:
 
 run:
 	flask run
+
+docker-build:
+	@echo "Building docker file:"
+	sudo docker build -t flask-heroku:latest .
+
+docker-run:
+	@echo "Running docker:"
+	sudo docker run -d -p 5000:5000 flask-heroku
