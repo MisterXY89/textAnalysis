@@ -42,7 +42,7 @@ collector = apiConfig.collector
 processor = apiConfig.processor
 sentiment = apiConfig.sentiment
 complexity = apiConfig.complexity
-googleSearch = apiConfig.altSources.googleSearch
+google_search = apiConfig.altSources.google_search
 
 
 # flask app init
