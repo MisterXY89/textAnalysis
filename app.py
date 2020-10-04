@@ -6,7 +6,7 @@ Flask Router
 """
 
 from flask import request, redirect, url_for, render_template, session
-from app_init import app, API
+from app_init import app, conn, API
 
 
 @app.route("/analyse", methods=["POST"])

@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 
 # kv-session
 import redis
-from redis import Redis
 from flask_kvsession import KVSessionExtension
 from simplekv.memory.redisstore import RedisStore
 
@@ -28,7 +27,8 @@ load_dotenv(verbose=True)
 # some Flask specific constants
 FLASK_SECRET = os.getenv("FLASK_SECRET")
 TIMEZONE = 'Europe/Berlin'
-REDIS_URL = "localhost:5000"
+# REDIS_URL = "localhost:5000"
+REDIS_URL = "0.0.0.0:5000"
 
 
 # setting timezone
@@ -50,11 +50,12 @@ app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.secret_key = FLASK_SECRET
 
+# TODO: overcommit_memory redis set
 
 # flask-kv-session init
 store = RedisStore(redis.StrictRedis())
 KVSessionExtension(store, app)
 
-urllib.parse.uses_netloc.append('redis')
-url = urllib.parse.urlparse(REDIS_URL)
-conn = Redis(host=url.hostname, port=url.port, db=0, password=url.password)
+# urllib.parse.uses_netloc.append('redis')
+# url = urllib.parse.urlparse(REDIS_URL)
+conn = redis.Redis(host='redis', port=6379, decode_responses=True) #, db=0, password=url.password)
