@@ -14,8 +14,11 @@ from functools import wraps
 from flask import Flask, request, redirect, url_for, render_template, session, jsonify
 
 # API & own lib handling
+import nltk
 from API import API
 from ApiConfig import *
+
+nltk.download('punkt')
 
 # API init
 apiConfig = ApiConfig()
