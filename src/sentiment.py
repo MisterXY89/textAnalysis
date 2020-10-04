@@ -9,16 +9,16 @@ class Sentiment:
     """
 
     def __init__(self, processor):
-		"""
-		init sentiment model
-		"""
+        """
+        init sentiment model
+        """
         self.model = SentimentModel()
 
     def getArticleSentiment(self, sentences):
         """
-		returns the dominant sentiment and sentiment distribution
-		takes sentences as list as an argument
-		"""
+        returns the dominant sentiment and sentiment distribution
+        takes sentences as list as an argument
+        """
         sentences = prepareText(sentences)
         result = self.model.predict_sentiment(sentences)
         articleSentimenDict = dict(Counter(result))
