@@ -6,8 +6,25 @@ Flask Router
 """
 
 from flask import request, redirect, url_for, render_template, session
-from app_init import app, conn, API
+from app_init import app, API
 
+from redis import Redis
+from flask_kvsession import KVSessionExtension
+from simplekv.memory.redisstore import RedisStore
+
+
+# flask-kv-session init
+store = RedisStore(redis.StrictRedis())
+KVSessionExtension(store, app)
+
+# urllib.parse.uses_netloc.append('redis')
+# url = urllib.parse.urlparse(REDIS_URL)
+conn = redis.Redis(host='redis', port=6379, decode_responses=True) #, db=0, password=url.password)
+
+@app.route('/test')
+def test():
+    redis.incr('hits')
+    return 'This Compose/Flask demo has been viewed %s time(s).' % redis.get('hits')
 
 @app.route("/analyse", methods=["POST"])
 def analyse():

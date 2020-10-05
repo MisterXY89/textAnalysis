@@ -5,7 +5,7 @@ import urllib.parse
 from dotenv import load_dotenv
 
 # kv-session
-import redis
+from redis import Redis
 from flask_kvsession import KVSessionExtension
 from simplekv.memory.redisstore import RedisStore
 
@@ -54,11 +54,3 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.secret_key = FLASK_SECRET
 
 # TODO: overcommit_memory redis set
-
-# flask-kv-session init
-store = RedisStore(redis.StrictRedis())
-KVSessionExtension(store, app)
-
-# urllib.parse.uses_netloc.append('redis')
-# url = urllib.parse.urlparse(REDIS_URL)
-conn = redis.Redis(host='redis', port=6379, decode_responses=True) #, db=0, password=url.password)
