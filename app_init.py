@@ -5,9 +5,7 @@ import urllib.parse
 from dotenv import load_dotenv
 
 # kv-session
-from redis import Redis
-from flask_kvsession import KVSessionExtension
-from simplekv.memory.redisstore import RedisStore
+
 
 # flask
 from functools import wraps

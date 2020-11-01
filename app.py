@@ -8,6 +8,7 @@ Flask Router
 from flask import request, redirect, url_for, render_template, session
 from app_init import app, API
 
+import redis
 from redis import Redis
 from flask_kvsession import KVSessionExtension
 from simplekv.memory.redisstore import RedisStore
@@ -19,7 +20,7 @@ KVSessionExtension(store, app)
 
 # urllib.parse.uses_netloc.append('redis')
 # url = urllib.parse.urlparse(REDIS_URL)
-conn = redis.Redis(host='redis', port=6379, decode_responses=True) #, db=0, password=url.password)
+conn = Redis(host='redis', port=6379, decode_responses=True) #, db=0, password=url.password)
 
 @app.route('/test')
 def test():

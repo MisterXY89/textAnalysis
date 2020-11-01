@@ -31,5 +31,10 @@ docker-run:
 	@echo "Running docker:"
 	docker run -d -p 5000:5000 flask-heroku
 
+
+docker-compose:
+	@echo "Composing:"
+	docker-compose up
+
 docker-id:
 	@docker ps | sed -n 2p | cut -f 1 -d " "
